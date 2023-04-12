@@ -3,6 +3,9 @@ import html2text
 import urllib.parse as parse
 import json
 import requests
+import logging
+
+_logger = logging.getLogger(__name__)
   
 
 class MessageError(models.TransientModel):
@@ -105,6 +108,7 @@ class SendMessage(models.TransientModel):
                     URL = base_url + '/web/content/' + str(attachment.id) + '/' + attachment.name
                     # base_url + '/web/content/' + str(record.id) + '/example.png'
                     print (URL)
+                    _logger.info(URL)
 
                     data = json.dumps({
                           "messaging_product": "whatsapp",
@@ -118,7 +122,9 @@ class SendMessage(models.TransientModel):
                         })
                     url = '%s/%s/%s' % (graph_api_url, graph_api_instance, 'messages')
                     # import pdb;pdb.set_trace();
+                    _logger.info(url)
                     response = requests.post(url, headers=headers, data=data)
+                    _logger.info(response)
                     print (response)
         #     headers = {
         #     'Authorization': 'Bearer '+ ACCESS_TOKEN,
