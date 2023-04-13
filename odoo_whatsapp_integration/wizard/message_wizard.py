@@ -109,7 +109,7 @@ class SendMessage(models.TransientModel):
                     # base_url + '/web/content/' + str(record.id) + '/example.png'
                     print (URL)
                     _logger.info(URL)
-
+                    URL = 'https://www.cybrosys.com/odoo-book/odoo-book-by-cybrosys-technologies.pdf'
                     data = json.dumps({
                           "messaging_product": "whatsapp",
                           "recipient_type": "individual",
