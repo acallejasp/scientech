@@ -107,9 +107,11 @@ class SendMessage(models.TransientModel):
                 if base_url and local_url:
                     URL = base_url + '/web/content/' + str(attachment.id) + '/' + attachment.name
                     # base_url + '/web/content/' + str(record.id) + '/example.png'
+                    URL = base_url + '/web/binary/saveas?model=ir.attachment&field=datas&filename_field=' + str(attachment.name) + '&id=' + str(attachment.id)
                     print (URL)
                     _logger.info(URL)
-                    URL = 'https://www.cybrosys.com/odoo-book/odoo-book-by-cybrosys-technologies.pdf'
+                    # http://ourodoo.com/web/binary/saveas?model=ir.attachment&field=datas&filename_field=name&id=56
+                    # URL = 'https://www.cybrosys.com/odoo-book/odoo-book-by-cybrosys-technologies.pdf'
                     data = json.dumps({
                           "messaging_product": "whatsapp",
                           "recipient_type": "individual",
