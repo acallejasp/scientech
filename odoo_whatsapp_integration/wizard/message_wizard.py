@@ -75,9 +75,9 @@ class SendMessage(models.TransientModel):
             'Authorization': 'Bearer '+ ACCESS_TOKEN,
             'Content-Type': 'application/json',
         }
+        TO_PHONE_NUMBER = self.user_id.mobile.split('+')[1]
         if self.message:
             message_string = self.message
-            TO_PHONE_NUMBER = self.user_id.mobile.split('+')[1]
             data = json.dumps({ "messaging_product": "whatsapp",
                      "to": TO_PHONE_NUMBER,
                       "type": "text", 
