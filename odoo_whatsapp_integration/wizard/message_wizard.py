@@ -101,7 +101,7 @@ class SendMessage(models.TransientModel):
             
             # attachment = self.env['ir.attachment'].search([('res_model', '=', 'whatsapp.wizard'), ('res_id', '=', self.id)])
             for attachment in self.attachment_ids:
-                
+                attachment.update({'public': True})
                 base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
                 local_url = self.env['ir.attachment'].browse(attachment.id)
                 if base_url and local_url:
