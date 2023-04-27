@@ -65,6 +65,18 @@
             </xpath>
         </field>
     </record>
+
+    <record id="whatsapp_demo_crm" model="ir.ui.view">
+        <field name="name">custom_whatsapp_module_demo_1</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_lead_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form/header/button[@name='action_set_lost']" position="after">
+                <button class="oe_highlight" icon="fa-whatsapp" name="crm_whatsapp" string="Send Custom Whatsapp Message" type="object"/>
+            </xpath>
+        </field>
+    </record>
+
     <record id="whatsapp_demo_inventory_order" model="ir.ui.view">
         <field name="name">custom_whatsapp_module_demo_2</field>
         <field name="model">stock.picking</field>

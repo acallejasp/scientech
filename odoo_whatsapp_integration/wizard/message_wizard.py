@@ -3,9 +3,6 @@ import html2text
 import urllib.parse as parse
 import json
 import requests
-import logging
-
-_logger = logging.getLogger(__name__)
   
 
 class MessageError(models.TransientModel):
@@ -75,9 +72,9 @@ class SendMessage(models.TransientModel):
             'Authorization': 'Bearer '+ ACCESS_TOKEN,
             'Content-Type': 'application/json',
         }
-        TO_PHONE_NUMBER = self.user_id.mobile.split('+')[1]
         if self.message:
             message_string = self.message
+            TO_PHONE_NUMBER = self.user_id.mobile.split('+')[1]
             data = json.dumps({ "messaging_product": "whatsapp",
                      "to": TO_PHONE_NUMBER,
                       "type": "text", 
@@ -101,17 +98,14 @@ class SendMessage(models.TransientModel):
             
             # attachment = self.env['ir.attachment'].search([('res_model', '=', 'whatsapp.wizard'), ('res_id', '=', self.id)])
             for attachment in self.attachment_ids:
-                attachment.update({'public': True})
+                
                 base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
                 local_url = self.env['ir.attachment'].browse(attachment.id)
                 if base_url and local_url:
                     URL = base_url + '/web/content/' + str(attachment.id) + '/' + attachment.name
                     # base_url + '/web/content/' + str(record.id) + '/example.png'
-                    # URL = base_url + '/web/binary/saveas?model=ir.attachment&field=datas&filename_field=' + str(attachment.name) + '&id=' + str(attachment.id)
                     print (URL)
-                    _logger.info(URL)
-                    # http://ourodoo.com/web/binary/saveas?model=ir.attachment&field=datas&filename_field=name&id=56
-                    # URL = 'https://www.cybrosys.com/odoo-book/odoo-book-by-cybrosys-technologies.pdf'
+
                     data = json.dumps({
                           "messaging_product": "whatsapp",
                           "recipient_type": "individual",
@@ -124,9 +118,7 @@ class SendMessage(models.TransientModel):
                         })
                     url = '%s/%s/%s' % (graph_api_url, graph_api_instance, 'messages')
                     # import pdb;pdb.set_trace();
-                    _logger.info(url)
                     response = requests.post(url, headers=headers, data=data)
-                    _logger.info(response)
                     print (response)
         #     headers = {
         #     'Authorization': 'Bearer '+ ACCESS_TOKEN,
