@@ -10,6 +10,7 @@
     'website': "bhavit.odoo@gmail.com",
     'category': 'Whatsapp',
     'version': '1.0',
+    'license': 'LGPL-3',
     'depends': ['base', 'sale', 'web', 'stock', 'purchase','account','contacts','crm'],
     'data': [
         'security/ir.model.access.csv',

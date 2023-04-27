@@ -7,6 +7,8 @@ import requests
 
 class MessageError(models.TransientModel):
     _name='display.error.message'
+    _description = 'History'
+
     def get_message(self):
         if self.env.context.get("message", False):
             return self.env.context.get('message')
@@ -15,6 +17,7 @@ class MessageError(models.TransientModel):
 
 class SendMessage(models.TransientModel):
     _name = 'whatsapp.wizard'
+    _description = 'History'
 
     user_id = fields.Many2one('res.partner', string="Recipient Name", default=lambda self: self.env[self._context.get('active_model')].browse(self.env.context.get('active_ids')).partner_id)
     mobile_number = fields.Char(related='user_id.mobile', required=True)
