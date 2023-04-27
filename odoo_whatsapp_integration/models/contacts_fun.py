@@ -3,7 +3,7 @@ from odoo import models, fields, api, _
 
 class Whatsappistory(models.Model):
     _name = 'whatsapp.history'
-    _descriptio = 'History'
+    _description = 'W History'
 
     user_id = fields.Many2one('res.partner', string="Recipient Name")
     mobile_number = fields.Char(related='user_id.mobile')
