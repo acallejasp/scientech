@@ -7,6 +7,7 @@ from odoo.exceptions import UserError
 
 class SendContactMessage(models.TransientModel):
     _name = 'whatsapp.wizard.contact'
+    _description = 'History'
 
     user_id = fields.Many2one('res.partner', string="Recipient Name", default=lambda self: self.env[self._context.get('active_model')].browse(self.env.context.get('active_ids')))
     mobile_number = fields.Char(related='user_id.mobile', required=True)

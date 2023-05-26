@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="res_config_settings_view_form_inherit_for_entelocean" model="ir.ui.view">
+            <field name="name">res.config.settings.view.form.inherit.for.entelocean</field>
+            <field name="model">res.config.settings</field>
+            <field name="inherit_id" ref="base_setup.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@id='user_default_rights']" position="before">
+                    <h2 class="mt32">Entelocean Settings</h2>
+                    <div class="row mt16 o_settings_container">
+                        <div class="col-12 col-lg-6 o_setting_box">
+                            <div class="o_setting_right_pane">
+                                <span class="o_form_label">URl</span>
+                                <div>
+                                    <field name="auth_server_url" class="oe_inline"/>
+                                </div>
+                                <span class="o_form_label">Clinet ID</span>
+                                <div>
+                                    <field name="client_id" class="oe_inline"/>
+                                </div>
+                                <!-- <span class="o_form_label">From Number</span>
+                                <div>
+                                    <field name="entelocean_from_number" class="oe_inline"/>
+                                </div> -->
+                                <br/>
+                                <span class="o_form_label">Clinet Secret</span>
+                                <field name="client_secret" class="oe_inline"/>
+                            </div>
+                        </div>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>
